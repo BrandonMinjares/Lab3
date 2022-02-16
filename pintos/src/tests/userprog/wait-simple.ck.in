@@ -1,0 +1,13 @@
+# -*- perl -*-
+use strict;
+use warnings;
+use tests::tests;
+check_expected ([<<'EOF']);
+(wait-simple) begin
+(child-simple) run
+child-simple: exit(CODE)
+(wait-simple) wait(exec()) = CODE
+(wait-simple) end
+wait-simple: exit(0)
+EOF
+pass;

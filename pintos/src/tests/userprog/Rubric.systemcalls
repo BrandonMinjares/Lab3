@@ -1,0 +1,51 @@
+System Calls:
+
+- "create" system call.
+10	create-normal
+5	create-exists
+5	create-empty
+5	create-long
+1	create-null
+1	create-bad-ptr
+
+- "open" system call.
+10	open-normal
+5	open-twice
+5	open-missing
+5	open-empty
+1	open-null
+1	open-bad-ptr
+
+- "read" system call.
+10	read-normal
+1	read-zero
+1	read-stdout
+1	read-bad-fd
+1	read-bad-ptr
+
+- "write" system call.
+10	write-normal
+1	write-zero
+1	write-stdin
+1	write-bad-fd
+1	write-bad-ptr
+
+- "close" system call.
+10	close-normal
+5	close-twice
+1	close-stdin
+1	close-stdout
+1	close-bad-fd
+
+- "exec" system call.
+5	exec-once
+10	exec-multiple
+5	exec-arg
+1	exec-bad-ptr
+1	exec-missing
+
+- "wait" system call.
+5	wait-simple
+5	wait-twice
+1	wait-bad-pid
+1	wait-killed
