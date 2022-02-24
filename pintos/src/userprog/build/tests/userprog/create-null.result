@@ -1,2 +1,17 @@
 FAIL
-Run didn't produce any output
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (create-null) begin
+  create-null: exit(-1)
+Differences in `diff -u' format:
+- (create-null) begin
++ Base Address: 0xc0000000
++ Page fault at 0xc0000001: rights violation error reading page in user context.
++ create-null: dying due to interrupt 0x0e (#PF Page-Fault Exception).
++ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804887c
++  cr2=c0000001 error=00000005
++  eax=00000000 ebx=0804c6bc ecx=00000000 edx=00000000
++  esi=00000000 edi=00000000 esp=bfffffdd ebp=00000000
++  cs=001b ds=0023 es=0023 ss=0023
+  create-null: exit(-1)

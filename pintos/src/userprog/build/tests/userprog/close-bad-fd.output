@@ -1,5 +1,5 @@
 Copying tests/userprog/close-bad-fd to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/Q8BXhegohQ.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/G9QSwVWsDI.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -9,7 +9,7 @@ Kernel command line: -q -f extract run close-bad-fd
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  350,208,000 loops/s.
+Calibrating timer...  396,492,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 206 sectors (103 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -22,12 +22,21 @@ Extracting ustar archive from scratch device into file system...
 Putting 'close-bad-fd' into the file system...
 Erasing ustar archive...
 Executing 'close-bad-fd':
+Base Address: 0xc0000000
+Page fault at 0xc0000001: rights violation error reading page in user context.
+close-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804885f
+ cr2=c0000001 error=00000005
+ eax=00000000 ebx=0804c68c ecx=00000000 edx=00000000
+ esi=00000000 edi=00000000 esp=bfffffdd ebp=00000000
+ cs=001b ds=0023 es=0023 ss=0023
+close-bad-fd: exit(-1)
 Execution of 'close-bad-fd' complete.
-Timer: 75 ticks
-Thread: 15 idle ticks, 60 kernel ticks, 0 user ticks
-hda2 (filesys): 253 reads, 252 writes
+Timer: 81 ticks
+Thread: 12 idle ticks, 66 kernel ticks, 3 user ticks
+hda2 (filesys): 284 reads, 252 writes
 hda3 (scratch): 125 reads, 2 writes
-Console: 847 characters output
+Console: 1271 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 1 page faults
 Powering off...

@@ -1,5 +1,5 @@
 Copying tests/userprog/args-single to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/7IDWUxkyo9.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/pRZ6rLYEj5.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -9,7 +9,7 @@ Kernel command line: -q -f extract run 'args-single onearg'
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  379,699,200 loops/s.
+Calibrating timer...  393,216,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 206 sectors (103 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -22,12 +22,13 @@ Extracting ustar archive from scratch device into file system...
 Putting 'args-single' into the file system...
 Erasing ustar archive...
 Executing 'args-single onearg':
+load: 'args-single onearg': open failed, no such file
 Execution of 'args-single onearg' complete.
-Timer: 73 ticks
-Thread: 11 idle ticks, 62 kernel ticks, 0 user ticks
-hda2 (filesys): 253 reads, 252 writes
+Timer: 80 ticks
+Thread: 8 idle ticks, 71 kernel ticks, 1 user ticks
+hda2 (filesys): 255 reads, 252 writes
 hda3 (scratch): 125 reads, 2 writes
-Console: 866 characters output
+Console: 919 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

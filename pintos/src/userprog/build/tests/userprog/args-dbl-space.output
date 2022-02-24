@@ -1,5 +1,5 @@
 Copying tests/userprog/args-dbl-space to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/Bs25_eYWId.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/GkovZDmkgj.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -9,7 +9,7 @@ Kernel command line: -q -f extract run 'args-dbl-space two  spaces!'
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  340,377,600 loops/s.
+Calibrating timer...  386,662,400 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 206 sectors (103 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -22,12 +22,13 @@ Extracting ustar archive from scratch device into file system...
 Putting 'args-dbl-space' into the file system...
 Erasing ustar archive...
 Executing 'args-dbl-space two  spaces!':
+load: 'args-dbl-space two  spaces!': open failed, no such file
 Execution of 'args-dbl-space two  spaces!' complete.
-Timer: 74 ticks
-Thread: 9 idle ticks, 65 kernel ticks, 0 user ticks
-hda2 (filesys): 253 reads, 252 writes
+Timer: 76 ticks
+Thread: 10 idle ticks, 65 kernel ticks, 1 user ticks
+hda2 (filesys): 255 reads, 252 writes
 hda3 (scratch): 125 reads, 2 writes
-Console: 895 characters output
+Console: 959 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

@@ -1,6 +1,6 @@
 Copying tests/userprog/exec-arg to scratch partition...
 Copying tests/userprog/child-args to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/OoVnw2Jynf.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/A5AYBmjSoh.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -10,7 +10,7 @@ Kernel command line: -q -f extract run exec-arg
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  391,577,600 loops/s.
+Calibrating timer...  394,444,800 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 206 sectors (103 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -24,12 +24,21 @@ Putting 'exec-arg' into the file system...
 Putting 'child-args' into the file system...
 Erasing ustar archive...
 Executing 'exec-arg':
+Base Address: 0xc0000000
+Page fault at 0xc0000001: rights violation error reading page in user context.
+exec-arg: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048869
+ cr2=c0000001 error=00000005
+ eax=00000000 ebx=0804c6b0 ecx=00000000 edx=00000000
+ esi=00000000 edi=00000000 esp=bfffffdd ebp=00000000
+ cs=001b ds=0023 es=0023 ss=0023
+exec-arg: exit(-1)
 Execution of 'exec-arg' complete.
-Timer: 93 ticks
-Thread: 25 idle ticks, 68 kernel ticks, 0 user ticks
-hda2 (filesys): 504 reads, 501 writes
+Timer: 96 ticks
+Thread: 21 idle ticks, 73 kernel ticks, 2 user ticks
+hda2 (filesys): 535 reads, 501 writes
 hda3 (scratch): 249 reads, 2 writes
-Console: 877 characters output
+Console: 1293 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 1 page faults
 Powering off...

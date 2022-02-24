@@ -67,12 +67,37 @@ static void
 push_command(const char *cmdline UNUSED, void **esp)
 {
   printf("Base Address: 0x%08x\n", (unsigned int)*esp);
+// copy cmdline into string that's not const
+// then parse copy with strtokr
 
+
+  // put address of unused on esp
+  //address length is strlen() of what you are memcpying
+// I’m pretty sure that cmdline is the entire 
+// command line args with the name of the program being the first argument
   // Word align with the stack pointer.
   *esp = (void *)((unsigned int)(*esp) & 0xfffffffc);
 
   // Some of your CSE130 Lab 3 code will go here.
-  //
+
+  char cmdline_copy[10];
+  strlcpy(cmdline_copy, cmdline, sizeof(cmdline_copy));
+  printf("Command: %s\n", cmdline_copy);
+
+  char* token;
+  char* rest = cmdline_copy;
+  while(token = strtok_r(rest, " ", &rest)) {
+    printf("Token %s\n", token);
+    }
+
+// memcpy to copy cmdline into *esp then capturing that address and copying that in later
+  int i;
+  //memcpy(esp, whatever ur copying, len of whatever)
+  for(i = 0; i < 7; i++) {
+    *esp -= 1;
+    printf("ESP %d: Address: 0x%08x \n", i + 1, (unsigned int)*esp);
+    
+  }
   // You'll be doing address arithmetic here and that's one of only a handful
   // of situations in which it is acceptable to have comments inside functions.
   //

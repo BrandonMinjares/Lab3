@@ -1,5 +1,5 @@
 Copying tests/userprog/write-bad-fd to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/38xDVs72Vm.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/J6VVGwz4zU.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -9,7 +9,7 @@ Kernel command line: -q -f extract run write-bad-fd
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  388,710,400 loops/s.
+Calibrating timer...  366,182,400 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 206 sectors (103 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -22,12 +22,21 @@ Extracting ustar archive from scratch device into file system...
 Putting 'write-bad-fd' into the file system...
 Erasing ustar archive...
 Executing 'write-bad-fd':
+Base Address: 0xc0000000
+Page fault at 0xc0000001: rights violation error reading page in user context.
+write-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048906
+ cr2=c0000001 error=00000005
+ eax=00000000 ebx=0804c73c ecx=00000000 edx=00000000
+ esi=00000000 edi=00000000 esp=bfffffdd ebp=00000000
+ cs=001b ds=0023 es=0023 ss=0023
+write-bad-fd: exit(-1)
 Execution of 'write-bad-fd' complete.
-Timer: 78 ticks
-Thread: 13 idle ticks, 65 kernel ticks, 0 user ticks
-hda2 (filesys): 257 reads, 255 writes
+Timer: 76 ticks
+Thread: 10 idle ticks, 64 kernel ticks, 3 user ticks
+hda2 (filesys): 288 reads, 255 writes
 hda3 (scratch): 126 reads, 2 writes
-Console: 847 characters output
+Console: 1271 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 1 page faults
 Powering off...

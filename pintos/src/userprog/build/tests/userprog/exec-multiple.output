@@ -1,6 +1,6 @@
 Copying tests/userprog/exec-multiple to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/sz82TQ1gx8.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/ZufPj3XbPs.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -24,12 +24,21 @@ Putting 'exec-multiple' into the file system...
 Putting 'child-simple' into the file system...
 Erasing ustar archive...
 Executing 'exec-multiple':
+Base Address: 0xc0000000
+Page fault at 0xc0000001: rights violation error reading page in user context.
+exec-multiple: dying due to interrupt 0x0e (#PF Page-Fault Exception).
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80488bd
+ cr2=c0000001 error=00000005
+ eax=00000000 ebx=0804c6f8 ecx=00000000 edx=00000000
+ esi=00000000 edi=00000000 esp=bfffffdd ebp=00000000
+ cs=001b ds=0023 es=0023 ss=0023
+exec-multiple: exit(-1)
 Execution of 'exec-multiple' complete.
 Timer: 96 ticks
-Thread: 27 idle ticks, 69 kernel ticks, 0 user ticks
-hda2 (filesys): 506 reads, 502 writes
+Thread: 23 idle ticks, 71 kernel ticks, 2 user ticks
+hda2 (filesys): 536 reads, 502 writes
 hda3 (scratch): 249 reads, 2 writes
-Console: 899 characters output
+Console: 1325 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 1 page faults
 Powering off...
