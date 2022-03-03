@@ -1,6 +1,6 @@
 Copying tests/userprog/exec-once to scratch partition...
 Copying tests/userprog/child-simple to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/S1wQqdc53q.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/JGo6axE2Jx.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -10,7 +10,7 @@ Kernel command line: -q -f extract run exec-once
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  314,163,200 loops/s.
+Calibrating timer...  399,769,600 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 206 sectors (103 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -25,20 +25,27 @@ Putting 'child-simple' into the file system...
 Erasing ustar archive...
 Executing 'exec-once':
 Base Address: 0xc0000000
-Page fault at 0xc0000001: rights violation error reading page in user context.
+ESP 1: Address: 0xbffffff6 
+ESP 2: Address: 0xbffffff6 
+ESP 3: Address: 0xbffffff6 
+ESP 4: Address: 0xbffffff6 
+ESP 5: Address: 0xbffffff6 
+ESP 6: Address: 0xbffffff6 
+ESP 7: Address: 0xbffffff6 
+Page fault at 0xc0000000: rights violation error reading page in user context.
 exec-once: dying due to interrupt 0x0e (#PF Page-Fault Exception).
 Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048869
- cr2=c0000001 error=00000005
+ cr2=c0000000 error=00000005
  eax=00000000 ebx=0804c6a8 ecx=00000000 edx=00000000
- esi=00000000 edi=00000000 esp=bfffffdd ebp=00000000
+ esi=00000000 edi=00000000 esp=bfffffda ebp=00000000
  cs=001b ds=0023 es=0023 ss=0023
 exec-once: exit(-1)
 Execution of 'exec-once' complete.
-Timer: 84 ticks
-Thread: 10 idle ticks, 71 kernel ticks, 3 user ticks
+Timer: 95 ticks
+Thread: 12 idle ticks, 78 kernel ticks, 5 user ticks
 hda2 (filesys): 532 reads, 499 writes
 hda3 (scratch): 248 reads, 2 writes
-Console: 1301 characters output
+Console: 1497 characters output
 Keyboard: 0 keys pressed
 Exception: 1 page faults
 Powering off...

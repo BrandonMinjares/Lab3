@@ -1,6 +1,6 @@
 Copying tests/userprog/read-bad-ptr to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/lHSEmJCL8q.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/UaVz5CTlta.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -25,20 +25,27 @@ Putting 'sample.txt' into the file system...
 Erasing ustar archive...
 Executing 'read-bad-ptr':
 Base Address: 0xc0000000
-Page fault at 0xc0000001: rights violation error reading page in user context.
+ESP 1: Address: 0xbffffff3 
+ESP 2: Address: 0xbffffff3 
+ESP 3: Address: 0xbffffff3 
+ESP 4: Address: 0xbffffff3 
+ESP 5: Address: 0xbffffff3 
+ESP 6: Address: 0xbffffff3 
+ESP 7: Address: 0xbffffff3 
+Page fault at 0: not present error reading page in user context.
 read-bad-ptr: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80488a3
- cr2=c0000001 error=00000005
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048164
+ cr2=00000000 error=00000004
  eax=00000000 ebx=0804c708 ecx=00000000 edx=00000000
- esi=00000000 edi=00000000 esp=bfffffdd ebp=00000000
+ esi=00000000 edi=00000000 esp=bfffffb0 ebp=bfffffcf
  cs=001b ds=0023 es=0023 ss=0023
 read-bad-ptr: exit(-1)
 Execution of 'read-bad-ptr' complete.
-Timer: 79 ticks
-Thread: 9 idle ticks, 68 kernel ticks, 2 user ticks
+Timer: 80 ticks
+Thread: 7 idle ticks, 69 kernel ticks, 4 user ticks
 hda2 (filesys): 291 reads, 259 writes
 hda3 (scratch): 128 reads, 2 writes
-Console: 1315 characters output
+Console: 1497 characters output
 Keyboard: 0 keys pressed
 Exception: 1 page faults
 Powering off...

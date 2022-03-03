@@ -1,5 +1,5 @@
 Copying tests/userprog/write-stdin to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/QuungCrkPI.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/SB6EKJ40H_.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -9,7 +9,7 @@ Kernel command line: -q -f extract run write-stdin
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  391,577,600 loops/s.
+Calibrating timer...  351,846,400 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 206 sectors (103 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -23,20 +23,27 @@ Putting 'write-stdin' into the file system...
 Erasing ustar archive...
 Executing 'write-stdin':
 Base Address: 0xc0000000
-Page fault at 0xc0000001: rights violation error reading page in user context.
+ESP 1: Address: 0xbffffff4 
+ESP 2: Address: 0xbffffff4 
+ESP 3: Address: 0xbffffff4 
+ESP 4: Address: 0xbffffff4 
+ESP 5: Address: 0xbffffff4 
+ESP 6: Address: 0xbffffff4 
+ESP 7: Address: 0xbffffff4 
+Page fault at 0: not present error reading page in user context.
 write-stdin: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048874
- cr2=c0000001 error=00000005
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048135
+ cr2=00000000 error=00000004
  eax=00000000 ebx=0804c69c ecx=00000000 edx=00000000
- esi=00000000 edi=00000000 esp=bfffffdd ebp=00000000
+ esi=00000000 edi=00000000 esp=bfffffb0 ebp=bfffffd0
  cs=001b ds=0023 es=0023 ss=0023
 write-stdin: exit(-1)
 Execution of 'write-stdin' complete.
-Timer: 78 ticks
-Thread: 13 idle ticks, 64 kernel ticks, 2 user ticks
+Timer: 82 ticks
+Thread: 5 idle ticks, 74 kernel ticks, 4 user ticks
 hda2 (filesys): 284 reads, 252 writes
 hda3 (scratch): 125 reads, 2 writes
-Console: 1265 characters output
+Console: 1446 characters output
 Keyboard: 0 keys pressed
 Exception: 1 page faults
 Powering off...

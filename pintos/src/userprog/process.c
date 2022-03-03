@@ -80,6 +80,9 @@ push_command(const char *cmdline UNUSED, void **esp)
 
   // Some of your CSE130 Lab 3 code will go here.
 
+
+
+/*
   char cmdline_copy[10];
   strlcpy(cmdline_copy, cmdline, sizeof(cmdline_copy));
   printf("Command: %s\n", cmdline_copy);
@@ -89,15 +92,39 @@ push_command(const char *cmdline UNUSED, void **esp)
   while(token = strtok_r(rest, " ", &rest)) {
     printf("Token %s\n", token);
     }
+*/
+
 
 // memcpy to copy cmdline into *esp then capturing that address and copying that in later
   int i;
   //memcpy(esp, whatever ur copying, len of whatever)
-  for(i = 0; i < 7; i++) {
-    *esp -= 1;
-    printf("ESP %d: Address: 0x%08x \n", i + 1, (unsigned int)*esp);
-    
+  /*
+  *esp -= strlen(cmdline) + 1;
+  printf("ESP %d: Address: 0x%08x \n", 1, (unsigned int)*esp);
+  *esp -= 2;
+  printf("ESP %d: Address: 0x%08x \n", 2, (unsigned int)*esp);
+  *esp -= 4;
+  printf("ESP %d: Address: 0x%08x \n", 3, (unsigned int)*esp);
+*/
+
+ for(i = 0; i < 7; i++) {
+    //minus length of
+    if (i == 0) {
+      *esp -= strlen(cmdline) + 1;
+      //memcpy(*esp, cmdline[i], strlen(cmdline) + 1);
+    } else if(i == 1) {
+      *esp -= 2;
+
+    } else {
+      *esp -= 4;
+    }
+    printf("ESP %d: Address: 0x%08x \n", i + 1, (unsigned int)*esp);      
   }
+
+
+
+
+  
   // You'll be doing address arithmetic here and that's one of only a handful
   // of situations in which it is acceptable to have comments inside functions.
   //
@@ -162,7 +189,7 @@ process_execute(const char *cmdline)
   // Create a Kernel Thread for the new process
   tid_t tid = thread_create(cmdline, PRI_DEFAULT, start_process, cmdline_copy);
 
-  timer_sleep(5);
+  timer_sleep(10);
 
   // CSE130 Lab 3 : The "parent" thread immediately returns after creating
   // the child. To get ANY of the tests passing, you need to synchronise the
