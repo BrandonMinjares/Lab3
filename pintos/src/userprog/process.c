@@ -67,73 +67,103 @@ static void
 push_command(const char *cmdline UNUSED, void **esp)
 {
   printf("Base Address: 0x%08x\n", (unsigned int)*esp);
-// copy cmdline into string that's not const
-// then parse copy with strtokr
-
-
-  // put address of unused on esp
-  //address length is strlen() of what you are memcpying
-// I’m pretty sure that cmdline is the entire 
-// command line args with the name of the program being the first argument
-  // Word align with the stack pointer.
   *esp = (void *)((unsigned int)(*esp) & 0xfffffffc);
 
-  // Some of your CSE130 Lab 3 code will go here.
 
+  // Copy command line
+  char *cmdline_copy = palloc_get_page(0);
+  strlcpy(cmdline_copy, cmdline, PGSIZE);
+  
 
-
-/*
-  char cmdline_copy[10];
-  strlcpy(cmdline_copy, cmdline, sizeof(cmdline_copy));
-  printf("Command: %s\n", cmdline_copy);
-
-  char* token;
-  char* rest = cmdline_copy;
-  while(token = strtok_r(rest, " ", &rest)) {
-    printf("Token %s\n", token);
-    }
-*/
-
-
-// memcpy to copy cmdline into *esp then capturing that address and copying that in later
-  int i;
-  //memcpy(esp, whatever ur copying, len of whatever)
-  /*
-  *esp -= strlen(cmdline) + 1;
-  printf("ESP %d: Address: 0x%08x \n", 1, (unsigned int)*esp);
-  *esp -= 2;
-  printf("ESP %d: Address: 0x%08x \n", 2, (unsigned int)*esp);
-  *esp -= 4;
-  printf("ESP %d: Address: 0x%08x \n", 3, (unsigned int)*esp);
-*/
-
- for(i = 0; i < 7; i++) {
-    //minus length of
-    if (i == 0) {
-      *esp -= strlen(cmdline) + 1;
-      //memcpy(*esp, cmdline[i], strlen(cmdline) + 1);
-    } else if(i == 1) {
-      *esp -= 2;
-
-    } else {
-      *esp -= 4;
-    }
-    printf("ESP %d: Address: 0x%08x \n", i + 1, (unsigned int)*esp);      
+  void* test[7];
+  char *p = strtok_r(cmdline_copy, " ", &cmdline_copy);
+  while(p!= NULL) {
+    printf("%s\n", p);
+    p = strtok_r(cmdline_copy, " ", &cmdline_copy);
   }
 
+  int len;
+  int argc = 0;
+  /*
+  for(int i = 0; i < 7; i++) {
+    len = strlen(p) + 1;
+    *esp -= len;
+    memcpy(*esp, p, len);
+    test[0] = *esp;
+    p = strtok_r(cmdline_copy, " ", &cmdline_copy);
+    argc += 1;
+  }
+  */
+  
+    // word align
+  *esp = (void*)((unsigned int)(*esp) & 0xfffffffc);
 
+  // last null
+  *esp -= 4;
+  *((uint32_t*) *esp) = 0;
+  int i;
+  // setting **esp with argvs
+  for (i = argc - 1; i >= 0; i--) {
+    *esp -= 4;
+    *((void**) *esp) = test[i];
+  }
 
+  // setting **argv (addr of stack, esp)
+  *esp -= 4;
+  *((void**) *esp) = (*esp + 4);
+
+  // setting argc
+  *esp -= 4;
+  *((int*) *esp) = argc;
+
+  // setting ret addr
+  *esp -= 4;
+  *((int*) *esp) = 0;
+
+}
 
   
-  // You'll be doing address arithmetic here and that's one of only a handful
-  // of situations in which it is acceptable to have comments inside functions.
-  //
-  // As you advance the stack pointer by adding fixed and variable offsets
-  // to it, add a SINGLE LINE comment to each logical block, a comment that
-  // describes what you're doing, and why.
-  //
-  // If nothing else, it'll remind you what you did when it doesn't work :)
-}
+
+  //printf("ESP %d: Address: 0x%08x \n", i + 1, (unsigned int)*esp);  
+
+/*
+ for(i = 0; i < 7; i++) {
+    if (i == 0) {
+      *esp -= strlen(cmdline) + 1;
+      //token =  strtok_r(cmdline_copy, " ", &cmdline_copy);
+      //printf("Token is %s\n", token);
+      //int len = strlen(token) + 1;
+      //memcpy(*esp, token, len);
+    } else if(i == 1) {
+      *esp -= 2;
+      //token =  strtok_r(cmdline_copy, " ", &cmdline_copy);
+      //*esp = (void*) ((unsigned int) (*esp) & 0xfffffffc);
+      //int len = strlen(token) + 1;
+      //memcpy(*esp, token, len);
+      
+    } else {
+      *esp -= 4;
+      
+      token =  strtok_r(cmdline_copy, " ", &cmdline_copy);
+      if(i == 2 || i == 3 || i == 4) {
+        *((char*) *esp) = 'a';
+      } else if (i == 5) {
+        *((int*) *esp) = 10;
+      } else {
+        void* esp = 0;
+      }
+      
+
+      //memcpy(*esp, token, strlen(token) + 1);
+
+    }
+    
+   // printf("Data %d: %s \n", i + 1, (char *)*esp);          
+  }
+*/
+
+  //palloc_free_page(cmdline_copy);
+//}
 
 /* 
  * A thread function to load a user process and start it running. 
