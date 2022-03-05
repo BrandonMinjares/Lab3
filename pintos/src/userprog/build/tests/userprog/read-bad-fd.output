@@ -1,5 +1,5 @@
 Copying tests/userprog/read-bad-fd to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/NzBcLsmnEL.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/xBIRMb6ZZX.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -9,7 +9,7 @@ Kernel command line: -q -f extract run read-bad-fd
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  370,688,000 loops/s.
+Calibrating timer...  395,264,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 206 sectors (103 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -22,28 +22,14 @@ Extracting ustar archive from scratch device into file system...
 Putting 'read-bad-fd' into the file system...
 Erasing ustar archive...
 Executing 'read-bad-fd':
-Base Address: 0xc0000000
-ESP 1: Address: 0xbffffff4 
-ESP 2: Address: 0xbffffff4 
-ESP 3: Address: 0xbffffff4 
-ESP 4: Address: 0xbffffff4 
-ESP 5: Address: 0xbffffff4 
-ESP 6: Address: 0xbffffff4 
-ESP 7: Address: 0xbffffff4 
-Page fault at 0: not present error reading page in user context.
-read-bad-fd: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80481c2
- cr2=00000000 error=00000004
- eax=00000000 ebx=0804c72c ecx=00000000 edx=00000000
- esi=00000000 edi=00000000 esp=bfffffb0 ebp=bfffffd0
- cs=001b ds=0023 es=0023 ss=0023
-read-bad-fd: exit(-1)
+(read-bad-fd) begin
+[ERROR] system call 8 is unimplemented!
 Execution of 'read-bad-fd' complete.
-Timer: 78 ticks
-Thread: 4 idle ticks, 71 kernel ticks, 4 user ticks
+Timer: 80 ticks
+Thread: 5 idle ticks, 73 kernel ticks, 2 user ticks
 hda2 (filesys): 288 reads, 255 writes
 hda3 (scratch): 126 reads, 2 writes
-Console: 1446 characters output
+Console: 902 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...

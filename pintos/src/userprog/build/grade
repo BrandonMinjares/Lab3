@@ -1,4 +1,4 @@
-TOTAL TESTING SCORE: 0.0%
+TOTAL TESTING SCORE: 40.6%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -6,11 +6,11 @@ SUMMARY BY TEST SET
 
 Test Set                                      Pts Max  % Ttl  % Max
 --------------------------------------------- --- --- ------ ------
-tests/userprog/Rubric.process                   0/  1   0.0%/ 40.0%
+tests/userprog/Rubric.process                   1/  1  40.0%/ 40.0%
 tests/userprog/Rubric.arguments                 0/  4   0.0%/ 20.0%
-tests/userprog/Rubric.systemcalls               0/134   0.0%/ 40.0%
+tests/userprog/Rubric.systemcalls               2/134   0.6%/ 40.0%
 --------------------------------------------- --- --- ------ ------
-Total                                                   0.0%/100.0%
+Total                                                  40.6%/100.0%
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -18,11 +18,11 @@ SUMMARY OF INDIVIDUAL TESTS
 
 Process Creation & Execution (tests/userprog/Rubric.process):
 
-	  ** 0/ 1 tests/userprog/args-none
+	     1/ 1 tests/userprog/args-none
 
 	- Section summary.
-	      0/  1 tests passed
-	      0/  1 points subtotal
+	      1/  1 tests passed
+	      1/  1 points subtotal
 
 Argument Passing (tests/userprog/Rubric.arguments):
 
@@ -63,8 +63,8 @@ System Calls (tests/userprog/Rubric.systemcalls):
 	- "write" system call.
 	  ** 0/10 tests/userprog/write-normal
 	  ** 0/ 1 tests/userprog/write-zero
-	  ** 0/ 1 tests/userprog/write-stdin
-	  ** 0/ 1 tests/userprog/write-bad-fd
+	     1/ 1 tests/userprog/write-stdin
+	     1/ 1 tests/userprog/write-bad-fd
 	  ** 0/ 1 tests/userprog/write-bad-ptr
 
 	- "close" system call.
@@ -88,6 +88,6 @@ System Calls (tests/userprog/Rubric.systemcalls):
 	  ** 0/ 1 tests/userprog/wait-killed
 
 	- Section summary.
-	      0/ 36 tests passed
-	      0/134 points subtotal
+	      2/ 36 tests passed
+	      2/134 points subtotal
 

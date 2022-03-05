@@ -4,40 +4,25 @@ Test output failed to match any acceptable form.
 Acceptable output:
   (exec-multiple) begin
   (child-simple) run
-  child-simple: exit(1757)
+  child-simple: exit(1489)
   (child-simple) run
-  child-simple: exit(1757)
+  child-simple: exit(1489)
   (child-simple) run
-  child-simple: exit(1757)
+  child-simple: exit(1489)
   (child-simple) run
-  child-simple: exit(1757)
+  child-simple: exit(1489)
   (exec-multiple) end
   exec-multiple: exit(0)
 Differences in `diff -u' format:
-- (exec-multiple) begin
+  (exec-multiple) begin
 - (child-simple) run
-- child-simple: exit(1757)
+- child-simple: exit(1489)
 - (child-simple) run
-- child-simple: exit(1757)
+- child-simple: exit(1489)
 - (child-simple) run
-- child-simple: exit(1757)
+- child-simple: exit(1489)
 - (child-simple) run
-- child-simple: exit(1757)
+- child-simple: exit(1489)
 - (exec-multiple) end
 - exec-multiple: exit(0)
-+ Base Address: 0xc0000000
-+ ESP 1: Address: 0xbffffff2 
-+ ESP 2: Address: 0xbffffff0 
-+ ESP 3: Address: 0xbfffffec 
-+ ESP 4: Address: 0xbfffffe8 
-+ ESP 5: Address: 0xbfffffe4 
-+ ESP 6: Address: 0xbfffffe0 
-+ ESP 7: Address: 0xbfffffdc 
-+ Page fault at 0: not present error reading page in user context.
-+ exec-multiple: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804817e
-+  cr2=00000000 error=00000004
-+  eax=00000000 ebx=0804c6f8 ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffa0 ebp=bfffffb8
-+  cs=001b ds=0023 es=0023 ss=0023
-+ exec-multiple: exit(-1)
++ [ERROR] system call 2 is unimplemented!

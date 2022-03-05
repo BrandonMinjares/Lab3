@@ -1,6 +1,6 @@
 Copying tests/userprog/write-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/A9XYezf8B5.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/kmRnvuLBBD.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -10,7 +10,7 @@ Kernel command line: -q -f extract run write-normal
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  373,145,600 loops/s.
+Calibrating timer...  396,902,400 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 206 sectors (103 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -24,28 +24,15 @@ Putting 'write-normal' into the file system...
 Putting 'sample.txt' into the file system...
 Erasing ustar archive...
 Executing 'write-normal':
-Base Address: 0xc0000000
-ESP 1: Address: 0xbffffff3 
-ESP 2: Address: 0xbffffff3 
-ESP 3: Address: 0xbffffff3 
-ESP 4: Address: 0xbffffff3 
-ESP 5: Address: 0xbffffff3 
-ESP 6: Address: 0xbffffff3 
-ESP 7: Address: 0xbffffff3 
-Page fault at 0: not present error reading page in user context.
-write-normal: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x80481b4
- cr2=00000000 error=00000004
- eax=00000000 ebx=0804c870 ecx=00000000 edx=00000000
- esi=00000000 edi=00000000 esp=bfffffb0 ebp=bfffffcf
- cs=001b ds=0023 es=0023 ss=0023
-write-normal: exit(-1)
+(write-normal) begin
+(write-normal) create "test.txt"
+[ERROR] system call 4 is unimplemented!
 Execution of 'write-normal' complete.
 Timer: 79 ticks
-Thread: 4 idle ticks, 71 kernel ticks, 5 user ticks
+Thread: 5 idle ticks, 74 kernel ticks, 1 user ticks
 hda2 (filesys): 296 reads, 263 writes
 hda3 (scratch): 130 reads, 2 writes
-Console: 1497 characters output
+Console: 985 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...

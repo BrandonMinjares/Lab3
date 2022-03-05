@@ -5,20 +5,6 @@ Acceptable output:
   (create-null) begin
   create-null: exit(-1)
 Differences in `diff -u' format:
-- (create-null) begin
-+ Base Address: 0xc0000000
-+ ESP 1: Address: 0xbffffff4 
-+ ESP 2: Address: 0xbffffff4 
-+ ESP 3: Address: 0xbffffff4 
-+ ESP 4: Address: 0xbffffff4 
-+ ESP 5: Address: 0xbffffff4 
-+ ESP 6: Address: 0xbffffff4 
-+ ESP 7: Address: 0xbffffff4 
-+ Page fault at 0: not present error reading page in user context.
-+ create-null: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-+ Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x804813d
-+  cr2=00000000 error=00000004
-+  eax=00000000 ebx=0804c6bc ecx=00000000 edx=00000000
-+  esi=00000000 edi=00000000 esp=bfffffb0 ebp=bfffffd0
-+  cs=001b ds=0023 es=0023 ss=0023
-  create-null: exit(-1)
+  (create-null) begin
+- create-null: exit(-1)
++ [ERROR] system call 4 is unimplemented!

@@ -1,5 +1,5 @@
 Copying tests/userprog/wait-bad-pid to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/8c2Ujzd5rE.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/xRrecV1ylI.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -9,7 +9,7 @@ Kernel command line: -q -f extract run wait-bad-pid
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  366,592,000 loops/s.
+Calibrating timer...  365,363,200 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 206 sectors (103 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -22,28 +22,14 @@ Extracting ustar archive from scratch device into file system...
 Putting 'wait-bad-pid' into the file system...
 Erasing ustar archive...
 Executing 'wait-bad-pid':
-Base Address: 0xc0000000
-ESP 1: Address: 0xbffffff3 
-ESP 2: Address: 0xbffffff1 
-ESP 3: Address: 0xbfffffed 
-ESP 4: Address: 0xbfffffe9 
-ESP 5: Address: 0xbfffffe5 
-ESP 6: Address: 0xbfffffe1 
-ESP 7: Address: 0xbfffffdd 
-Page fault at 0: not present error reading page in user context.
-wait-bad-pid: dying due to interrupt 0x0e (#PF Page-Fault Exception).
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0x8048120
- cr2=00000000 error=00000004
- eax=00000000 ebx=0804c68c ecx=00000000 edx=00000000
- esi=00000000 edi=00000000 esp=bfffffa0 ebp=bfffffb9
- cs=001b ds=0023 es=0023 ss=0023
-wait-bad-pid: exit(-1)
+(wait-bad-pid) begin
+[ERROR] system call 3 is unimplemented!
 Execution of 'wait-bad-pid' complete.
-Timer: 79 ticks
-Thread: 11 idle ticks, 67 kernel ticks, 2 user ticks
+Timer: 76 ticks
+Thread: 7 idle ticks, 67 kernel ticks, 2 user ticks
 hda2 (filesys): 284 reads, 252 writes
 hda3 (scratch): 125 reads, 2 writes
-Console: 1453 characters output
+Console: 907 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...

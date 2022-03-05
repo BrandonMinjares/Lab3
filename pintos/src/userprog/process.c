@@ -66,104 +66,65 @@
 static void
 push_command(const char *cmdline UNUSED, void **esp)
 {
-  printf("Base Address: 0x%08x\n", (unsigned int)*esp);
-  *esp = (void *)((unsigned int)(*esp) & 0xfffffffc);
-
-
   // Copy command line
   char *cmdline_copy = palloc_get_page(0);
   strlcpy(cmdline_copy, cmdline, PGSIZE);
+
+ // printf("Base Address: 0x%08x\n", (unsigned int)*esp);
+
+  char *token;
+  int len, argc = 0;
+
+  token = strtok_r(cmdline_copy, " ", &cmdline_copy);
   
+  int i = 0;
+  argc = 1;
+  void* argv_ptr[1];
 
-  void* test[7];
-  char *p = strtok_r(cmdline_copy, " ", &cmdline_copy);
-  while(p!= NULL) {
-    printf("%s\n", p);
-    p = strtok_r(cmdline_copy, " ", &cmdline_copy);
-  }
+  // Title
+  char *addr = *esp;
 
-  int len;
-  int argc = 0;
-  /*
-  for(int i = 0; i < 7; i++) {
-    len = strlen(p) + 1;
-    *esp -= len;
-    memcpy(*esp, p, len);
-    test[0] = *esp;
-    p = strtok_r(cmdline_copy, " ", &cmdline_copy);
-    argc += 1;
-  }
-  */
-  
-    // word align
-  *esp = (void*)((unsigned int)(*esp) & 0xfffffffc);
+  *esp -= strlen(token) + 1;
+  //printf("ESP %d: Address: 0x%08x -- Data: %s\n", 1, (unsigned int)*esp, token); 
+  memcpy(*esp, token, strlen(token) + 1);
 
-  // last null
+  // 0xbfffff6
+  argv_ptr[0] = *esp;
+
+  // Word Align
+  *esp = (void *)((unsigned int)(*esp) & 0xfffffffc);
+ // printf("ESP %d: Address: 0x%08x\n", 2, (unsigned int)*esp);
+
+
+  int val = 0;
   *esp -= 4;
   *((uint32_t*) *esp) = 0;
-  int i;
-  // setting **esp with argvs
-  for (i = argc - 1; i >= 0; i--) {
-    *esp -= 4;
-    *((void**) *esp) = test[i];
-  }
 
-  // setting **argv (addr of stack, esp)
+  //printf("ESP %d: Address: 0x%08x\n", 3, (unsigned int)*esp);
+
+
+  *esp -= (sizeof(char **));
+  *((void**) *esp) = argv_ptr[0];
+//  printf("ESP %d: Address: 0x%08x\n", 5, (unsigned int)*esp); 
+
+
   *esp -= 4;
   *((void**) *esp) = (*esp + 4);
+  //printf("ESP %d: Address: 0x%08x\n", 6, (unsigned int)*esp); 
 
-  // setting argc
+
   *esp -= 4;
   *((int*) *esp) = argc;
-
-  // setting ret addr
-  *esp -= 4;
-  *((int*) *esp) = 0;
-
-}
-
+  //printf("argc : %d, %p\n", argc, *esp);
+  //printf("ESP %d: Address: 0x%08x\n", 6, (unsigned int)*esp); 
   
 
-  //printf("ESP %d: Address: 0x%08x \n", i + 1, (unsigned int)*esp);  
+  *esp -= 4;
+  *((int*) *esp) = 0;
+ // printf("ESP %d: Address: 0x%08x\n", 7, (unsigned int)*esp); 
 
-/*
- for(i = 0; i < 7; i++) {
-    if (i == 0) {
-      *esp -= strlen(cmdline) + 1;
-      //token =  strtok_r(cmdline_copy, " ", &cmdline_copy);
-      //printf("Token is %s\n", token);
-      //int len = strlen(token) + 1;
-      //memcpy(*esp, token, len);
-    } else if(i == 1) {
-      *esp -= 2;
-      //token =  strtok_r(cmdline_copy, " ", &cmdline_copy);
-      //*esp = (void*) ((unsigned int) (*esp) & 0xfffffffc);
-      //int len = strlen(token) + 1;
-      //memcpy(*esp, token, len);
-      
-    } else {
-      *esp -= 4;
-      
-      token =  strtok_r(cmdline_copy, " ", &cmdline_copy);
-      if(i == 2 || i == 3 || i == 4) {
-        *((char*) *esp) = 'a';
-      } else if (i == 5) {
-        *((int*) *esp) = 10;
-      } else {
-        void* esp = 0;
-      }
-      
-
-      //memcpy(*esp, token, strlen(token) + 1);
-
-    }
-    
-   // printf("Data %d: %s \n", i + 1, (char *)*esp);          
-  }
-*/
-
-  //palloc_free_page(cmdline_copy);
-//}
+ // palloc_free_page(cmdline_copy);
+}
 
 /* 
  * A thread function to load a user process and start it running. 
@@ -283,3 +244,5 @@ process_activate(void)
   // Set thread's kernel stack for use in processing interrupts. 
   tss_update();
 }
+
+
