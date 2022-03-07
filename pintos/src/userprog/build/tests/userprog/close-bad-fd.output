@@ -1,5 +1,5 @@
 Copying tests/userprog/close-bad-fd to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/0IhfCrbpht.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/5rl3fQLzuZ.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -9,7 +9,7 @@ Kernel command line: -q -f extract run close-bad-fd
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  322,355,200 loops/s.
+Calibrating timer...  378,880,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 206 sectors (103 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -25,8 +25,8 @@ Executing 'close-bad-fd':
 (close-bad-fd) begin
 [ERROR] system call 12 is unimplemented!
 Execution of 'close-bad-fd' complete.
-Timer: 83 ticks
-Thread: 8 idle ticks, 74 kernel ticks, 1 user ticks
+Timer: 79 ticks
+Thread: 5 idle ticks, 75 kernel ticks, 0 user ticks
 hda2 (filesys): 284 reads, 252 writes
 hda3 (scratch): 125 reads, 2 writes
 Console: 908 characters output

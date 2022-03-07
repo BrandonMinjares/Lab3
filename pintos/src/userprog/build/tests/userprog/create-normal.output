@@ -1,5 +1,5 @@
 Copying tests/userprog/create-normal to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/n5Ya78X23U.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/R_DEMqXoPg.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -9,7 +9,7 @@ Kernel command line: -q -f extract run create-normal
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  397,312,000 loops/s.
+Calibrating timer...  384,614,400 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 206 sectors (103 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -26,11 +26,11 @@ Executing 'create-normal':
 (create-normal) create quux.dat
 [ERROR] system call 4 is unimplemented!
 Execution of 'create-normal' complete.
-Timer: 83 ticks
-Thread: 10 idle ticks, 73 kernel ticks, 0 user ticks
+Timer: 80 ticks
+Thread: 8 idle ticks, 72 kernel ticks, 1 user ticks
 hda2 (filesys): 288 reads, 255 writes
 hda3 (scratch): 126 reads, 2 writes
-Console: 945 characters output
+Console: 944 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

@@ -4,15 +4,15 @@ Test output failed to match any acceptable form.
 Acceptable output:
   (wait-simple) begin
   (child-simple) run
-  child-simple: exit(1489)
-  (wait-simple) wait(exec()) = 1489
+  child-simple: exit(1304)
+  (wait-simple) wait(exec()) = 1304
   (wait-simple) end
   wait-simple: exit(0)
 Differences in `diff -u' format:
   (wait-simple) begin
 - (child-simple) run
-- child-simple: exit(1489)
-- (wait-simple) wait(exec()) = 1489
+- child-simple: exit(1304)
+- (wait-simple) wait(exec()) = 1304
 - (wait-simple) end
 - wait-simple: exit(0)
 + [ERROR] system call 2 is unimplemented!

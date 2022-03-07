@@ -4,16 +4,16 @@ Test output failed to match any acceptable form.
 Acceptable output:
   (wait-twice) begin
   (child-simple) run
-  child-simple: exit(1489)
-  (wait-twice) wait(exec()) = 1489
+  child-simple: exit(1304)
+  (wait-twice) wait(exec()) = 1304
   (wait-twice) wait(exec()) = -1
   (wait-twice) end
   wait-twice: exit(0)
 Differences in `diff -u' format:
   (wait-twice) begin
 - (child-simple) run
-- child-simple: exit(1489)
-- (wait-twice) wait(exec()) = 1489
+- child-simple: exit(1304)
+- (wait-twice) wait(exec()) = 1304
 - (wait-twice) wait(exec()) = -1
 - (wait-twice) end
 - wait-twice: exit(0)
