@@ -4,15 +4,6 @@ Test output failed to match any acceptable form.
 Acceptable output:
   (write-bad-ptr) begin
   (write-bad-ptr) open "sample.txt"
-  write-bad-ptr: exit(-1)
-Differences in `diff -u' format:
-  (write-bad-ptr) begin
-  (write-bad-ptr) open "sample.txt"
-- write-bad-ptr: exit(-1)
-+ [ERROR] system call 6 is unimplemented!
-Acceptable output:
-  (write-bad-ptr) begin
-  (write-bad-ptr) open "sample.txt"
   (write-bad-ptr) end
   write-bad-ptr: exit(0)
 Differences in `diff -u' format:
@@ -20,4 +11,13 @@ Differences in `diff -u' format:
   (write-bad-ptr) open "sample.txt"
 - (write-bad-ptr) end
 - write-bad-ptr: exit(0)
++ [ERROR] system call 6 is unimplemented!
+Acceptable output:
+  (write-bad-ptr) begin
+  (write-bad-ptr) open "sample.txt"
+  write-bad-ptr: exit(-1)
+Differences in `diff -u' format:
+  (write-bad-ptr) begin
+  (write-bad-ptr) open "sample.txt"
+- write-bad-ptr: exit(-1)
 + [ERROR] system call 6 is unimplemented!

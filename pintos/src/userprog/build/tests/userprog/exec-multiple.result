@@ -4,25 +4,25 @@ Test output failed to match any acceptable form.
 Acceptable output:
   (exec-multiple) begin
   (child-simple) run
-  child-simple: exit(1304)
+  child-simple: exit(1614)
   (child-simple) run
-  child-simple: exit(1304)
+  child-simple: exit(1614)
   (child-simple) run
-  child-simple: exit(1304)
+  child-simple: exit(1614)
   (child-simple) run
-  child-simple: exit(1304)
+  child-simple: exit(1614)
   (exec-multiple) end
   exec-multiple: exit(0)
 Differences in `diff -u' format:
   (exec-multiple) begin
 - (child-simple) run
-- child-simple: exit(1304)
+- child-simple: exit(1614)
 - (child-simple) run
-- child-simple: exit(1304)
+- child-simple: exit(1614)
 - (child-simple) run
-- child-simple: exit(1304)
+- child-simple: exit(1614)
 - (child-simple) run
-- child-simple: exit(1304)
+- child-simple: exit(1614)
 - (exec-multiple) end
 - exec-multiple: exit(0)
 + [ERROR] system call 2 is unimplemented!

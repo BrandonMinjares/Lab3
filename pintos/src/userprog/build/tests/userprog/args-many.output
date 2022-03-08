@@ -1,5 +1,5 @@
 Copying tests/userprog/args-many to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/85RS3OtFWt.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/PpoxcpaMYc.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -9,7 +9,7 @@ Kernel command line: -q -f extract run 'args-many a b c d e f g h i j k l m n o 
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  379,699,200 loops/s.
+Calibrating timer...  393,216,000 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 206 sectors (103 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -22,13 +22,18 @@ Extracting ustar archive from scratch device into file system...
 Putting 'args-many' into the file system...
 Erasing ustar archive...
 Executing 'args-many a b c d e f g h i j k l m n o p q r s t u v':
-load: 'args-many a b c d e f g h i j k l m n o p q r s t u v': open failed, no such file
-Execution of 'args-many a b c d e f g h i j k l m n o p q r s t u v' complete.
-Timer: 78 ticks
-Thread: 6 idle ticks, 72 kernel ticks, 0 user ticks
-hda2 (filesys): 255 reads, 252 writes
+Interrupt 0x0d (#GP General Protection Exception) at eip=0xc0022052
+ cr2=00000000 error=0000ffd0
+ eax=bfffffd2 ebx=bfffffd8 ecx=bfffffd4 edx=bfffffd6
+ esi=bfffffde edi=bfffffe0 esp=bfffffd0 ebp=bfffffdc
+ cs=0008 ds=0010 es=0010 ss=ffce
+Kernel PANIC at ../../userprog/exception.c:109 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc00299e6 0Execution of 'args-many a b c d e f g h i j k l m n o p q r s t u v' complete.
+Timer: 217 ticks
+Thread: 6 idle ticks, 67 kernel ticks, 144 user ticks
+hda2 (filesys): 284 reads, 252 writes
 hda3 (scratch): 125 reads, 2 writes
-Console: 1057 characters output
+Console: 1333 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 1106416 page faults
 Powering off...

@@ -74,29 +74,37 @@ push_command(const char *cmdline UNUSED, void **esp)
 
   char *token;
   int len, argc = 0;
-  void* tokens[10];
-  token = strtok_r(cmdline_copy, " ", &cmdline_copy);
 
-  //while(token != NULL) {
-    //token = strtok_r(cmdline_copy, " ", &cmdline_copy);
-    //printf("%s\n", token);
-    //token[len];
-    //len++;
-  //}
-  
+  void* tokens[10];
+  void* addresses[10];
+
+  token = strtok_r(cmdline_copy, " ", &cmdline_copy);
+  while(token != NULL) {
+
+   // printf("%s\n", token);
+
+    tokens[argc] = token;
+    len = strlen(tokens[argc]) + 1;
+    *esp -= len;
+    memcpy(*esp, tokens[argc], len);
+    addresses[argc] = *esp;
+    argc++;
+    token = strtok_r(cmdline_copy, " ", &cmdline_copy);
+  }
   int i = 0;
-  argc = 1;
-  void* argv_ptr[1];
+  //void* argv_ptr[1];
 
   // Title
-  char *addr = *esp;
+ // char *addr = *esp;
 
-  *esp -= strlen(token) + 1;
+ // *esp -= strlen(token) + 1;
   //printf("ESP %d: Address: 0x%08x -- Data: %s\n", 1, (unsigned int)*esp, token); 
-  memcpy(*esp, token, strlen(token) + 1);
+  //memcpy(*esp, token, strlen(token) + 1);
 
   // 0xbfffff6
-  argv_ptr[0] = *esp;
+  //argv_ptr[0] = *esp;
+
+
 
   // Word Align
   *esp = (void *)((unsigned int)(*esp) & 0xfffffffc);
@@ -110,9 +118,14 @@ push_command(const char *cmdline UNUSED, void **esp)
   //printf("ESP %d: Address: 0x%08x\n", 3, (unsigned int)*esp);
 
 
-  *esp -= (sizeof(char **));
-  *((void**) *esp) = argv_ptr[0];
+  for(i = argc - 1; i>=0;i--) {
+    *esp -= 4;
+    *((void**) *esp) = addresses[i];
+  }
 //  printf("ESP %d: Address: 0x%08x\n", 5, (unsigned int)*esp); 
+
+
+
 
 
   *esp -= 4;
@@ -150,13 +163,14 @@ start_process(void *cmdline)
   pif.eflags = FLAG_IF | FLAG_MBS;
 
 
-  char *file_name = (char*) cmdline;
-  const char *cmdline_token = palloc_get_page(0);
+  char *file_name;
+  char *cmdline_token = palloc_get_page(0);
+  strlcpy(cmdline_token, cmdline, PGSIZE);
 
   char *token, save_ptr;
   int count = 0;
   
-  //token = strtok_r(file_name, " ", &save_ptr);
+  file_name = strtok_r(cmdline_token, " ", &token);
 
   //while(token != NULL) {
   //  token = strtok_r(file_name, " ", &save_ptr);
@@ -170,8 +184,8 @@ start_process(void *cmdline)
  
   palloc_free_page(cmdline);
 
-  //if (!loaded)
-    //thread_exit();
+  if (!loaded)
+    thread_exit();
 
   // Start the user process by simulating a return from an
   // interrupt, implemented by intr_exit (in threads/intr-stubs.S).
@@ -208,7 +222,7 @@ process_execute(const char *cmdline)
 
   char *token;
   file_name = strtok_r(file_name, " ", &token);
-  printf("Name%s\n", file_name);
+  //printf("Name%s\n", file_name);
   // Create a Kernel Thread for the new process
   tid_t tid = thread_create(file_name, PRI_DEFAULT, start_process, cmdline_copy);
 
@@ -216,7 +230,7 @@ process_execute(const char *cmdline)
   //palloc_free_page(cmdline_copy);
   //palloc_free_page(file_name);
 
-  //timer_sleep(10);
+  timer_sleep(10);
 
   // CSE130 Lab 3 : The "parent" thread immediately returns after creating
   // the child. To get ANY of the tests passing, you need to synchronise the

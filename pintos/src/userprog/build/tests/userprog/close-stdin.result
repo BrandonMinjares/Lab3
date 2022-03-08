@@ -3,17 +3,17 @@ Test output failed to match any acceptable form.
 
 Acceptable output:
   (close-stdin) begin
+  close-stdin: exit(-1)
+Differences in `diff -u' format:
+  (close-stdin) begin
+- close-stdin: exit(-1)
++ [ERROR] system call 12 is unimplemented!
+Acceptable output:
+  (close-stdin) begin
   (close-stdin) end
   close-stdin: exit(0)
 Differences in `diff -u' format:
   (close-stdin) begin
 - (close-stdin) end
 - close-stdin: exit(0)
-+ [ERROR] system call 12 is unimplemented!
-Acceptable output:
-  (close-stdin) begin
-  close-stdin: exit(-1)
-Differences in `diff -u' format:
-  (close-stdin) begin
-- close-stdin: exit(-1)
 + [ERROR] system call 12 is unimplemented!
