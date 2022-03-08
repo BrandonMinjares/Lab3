@@ -75,14 +75,11 @@ push_command(const char *cmdline UNUSED, void **esp)
   char *token;
   int len, argc = 0;
 
-  void* tokens[10];
-  void* addresses[10];
+  void* tokens[40];
+  void* addresses[40];
 
   token = strtok_r(cmdline_copy, " ", &cmdline_copy);
   while(token != NULL) {
-
-   // printf("%s\n", token);
-
     tokens[argc] = token;
     len = strlen(tokens[argc]) + 1;
     *esp -= len;
@@ -91,59 +88,29 @@ push_command(const char *cmdline UNUSED, void **esp)
     argc++;
     token = strtok_r(cmdline_copy, " ", &cmdline_copy);
   }
-  int i = 0;
-  //void* argv_ptr[1];
-
-  // Title
- // char *addr = *esp;
-
- // *esp -= strlen(token) + 1;
-  //printf("ESP %d: Address: 0x%08x -- Data: %s\n", 1, (unsigned int)*esp, token); 
-  //memcpy(*esp, token, strlen(token) + 1);
-
-  // 0xbfffff6
-  //argv_ptr[0] = *esp;
-
-
 
   // Word Align
   *esp = (void *)((unsigned int)(*esp) & 0xfffffffc);
- // printf("ESP %d: Address: 0x%08x\n", 2, (unsigned int)*esp);
-
 
   int val = 0;
   *esp -= 4;
   *((uint32_t*) *esp) = 0;
 
-  //printf("ESP %d: Address: 0x%08x\n", 3, (unsigned int)*esp);
-
-
+  int i = 0;
   for(i = argc - 1; i>=0;i--) {
     *esp -= 4;
     *((void**) *esp) = addresses[i];
   }
-//  printf("ESP %d: Address: 0x%08x\n", 5, (unsigned int)*esp); 
-
-
-
-
 
   *esp -= 4;
   *((void**) *esp) = (*esp + 4);
-  //printf("ESP %d: Address: 0x%08x\n", 6, (unsigned int)*esp); 
-
 
   *esp -= 4;
   *((int*) *esp) = argc;
-  //printf("argc : %d, %p\n", argc, *esp);
-  //printf("ESP %d: Address: 0x%08x\n", 6, (unsigned int)*esp); 
-  
 
   *esp -= 4;
   *((int*) *esp) = 0;
- // printf("ESP %d: Address: 0x%08x\n", 7, (unsigned int)*esp); 
-
- // palloc_free_page(cmdline_copy);
+  
 }
 
 /* 

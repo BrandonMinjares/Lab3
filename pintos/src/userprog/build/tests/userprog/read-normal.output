@@ -1,6 +1,6 @@
 Copying tests/userprog/read-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/_PjZhZsXwv.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/TkL8qa1R74.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -10,7 +10,7 @@ Kernel command line: -q -f extract run read-normal
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  373,145,600 loops/s.
+Calibrating timer...  394,035,200 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 206 sectors (103 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)

@@ -1,4 +1,1 @@
-FAIL
-Kernel panic in run: PANIC at ../../userprog/exception.c:109 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc00299e6
-Translation of call stack:
+PASS

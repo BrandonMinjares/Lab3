@@ -1,6 +1,6 @@
 Copying tests/userprog/write-normal to scratch partition...
 Copying ../../tests/userprog/sample.txt to scratch partition...
-qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/J8A_8W2fIx.dsk -m 4 -net none -nographic -monitor null
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/3i7ExQox5o.dsk -m 4 -net none -nographic -monitor null
 c[?7l[2J[0mSeaBIOS (version 1.13.0-1ubuntu1.1)
 Booting from Hard Disk...
 PPiiLLoo  hhddaa1
@@ -10,7 +10,7 @@ Kernel command line: -q -f extract run write-normal
 Pintos booting with 3,968 kB RAM...
 367 pages available in kernel pool.
 367 pages available in user pool.
-Calibrating timer...  367,411,200 loops/s.
+Calibrating timer...  366,182,400 loops/s.
 hda: 5,040 sectors (2 MB), model "QM00001", serial "QEMU HARDDISK"
 hda1: 206 sectors (103 kB), Pintos OS kernel (20)
 hda2: 4,096 sectors (2 MB), Pintos file system (21)
@@ -28,8 +28,8 @@ Executing 'write-normal':
 (write-normal) create "test.txt"
 [ERROR] system call 4 is unimplemented!
 Execution of 'write-normal' complete.
-Timer: 82 ticks
-Thread: 6 idle ticks, 76 kernel ticks, 1 user ticks
+Timer: 76 ticks
+Thread: 6 idle ticks, 69 kernel ticks, 1 user ticks
 hda2 (filesys): 296 reads, 263 writes
 hda3 (scratch): 130 reads, 2 writes
 Console: 985 characters output
