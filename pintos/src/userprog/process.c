@@ -38,6 +38,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "threads/semaphore.h"
 #include "userprog/tss.h"
 #include "userprog/elf.h"
 #include "filesys/directory.h"
@@ -58,6 +59,9 @@
 #include "userprog/process.h"
 #include "devices/timer.h"
 
+
+struct semaphore sema;
+//sem_t semaphore;
 /*
  * Push the command and arguments found in CMDLINE onto the stack, word 
  * aligned with the stack pointer ESP. Should only be called after the ELF 
@@ -66,6 +70,9 @@
 static void
 push_command(const char *cmdline UNUSED, void **esp)
 {
+
+
+
   // Copy command line
   char *cmdline_copy = palloc_get_page(0);
   strlcpy(cmdline_copy, cmdline, PGSIZE);
@@ -79,6 +86,7 @@ push_command(const char *cmdline UNUSED, void **esp)
   void* addresses[40];
 
   token = strtok_r(cmdline_copy, " ", &cmdline_copy);
+  
   while(token != NULL) {
     tokens[argc] = token;
     len = strlen(tokens[argc]) + 1;
@@ -110,7 +118,6 @@ push_command(const char *cmdline UNUSED, void **esp)
 
   *esp -= 4;
   *((int*) *esp) = 0;
-  
 }
 
 /* 
@@ -121,6 +128,8 @@ push_command(const char *cmdline UNUSED, void **esp)
 static void
 start_process(void *cmdline)
 {
+
+
   // Initialize interrupt frame and load executable.
   struct intr_frame pif;
   memset(&pif, 0, sizeof pif);
@@ -151,6 +160,7 @@ start_process(void *cmdline)
  
   palloc_free_page(cmdline);
 
+  semaphore_up (&sema);
   if (!loaded)
     thread_exit();
 
@@ -161,6 +171,7 @@ start_process(void *cmdline)
   // pointer (%esp) to our stack frame and jump to it.
   asm volatile("movl %0, %%esp; jmp intr_exit" : : "g"(&pif) : "memory");
   NOT_REACHED();
+
 }
 
 /*  
@@ -172,17 +183,15 @@ start_process(void *cmdline)
 tid_t 
 process_execute(const char *cmdline)
 {
-  // Make a copy of CMDLINE to avoid a race condition between the caller 
-  // and elf_load()
+
+  semaphore_init (&sema, 0);
+
   char *cmdline_copy = palloc_get_page(0);
   char *file_name = palloc_get_page(0);
 
   if (cmdline_copy == NULL)
     return TID_ERROR;
 
-
-
-  //strlcpy(cmdline_copy, cmdline, PGSIZE);
   strlcpy(file_name, cmdline, PGSIZE);
   strlcpy(cmdline_copy, cmdline, PGSIZE);
 
@@ -191,13 +200,12 @@ process_execute(const char *cmdline)
   file_name = strtok_r(file_name, " ", &token);
   //printf("Name%s\n", file_name);
   // Create a Kernel Thread for the new process
+
+  //struct thread *current = thread_current();
+
   tid_t tid = thread_create(file_name, PRI_DEFAULT, start_process, cmdline_copy);
-
-
-  //palloc_free_page(cmdline_copy);
-  //palloc_free_page(file_name);
-
-  timer_sleep(10);
+  semaphore_down(&sema);
+  //timer_sleep(10);
 
   // CSE130 Lab 3 : The "parent" thread immediately returns after creating
   // the child. To get ANY of the tests passing, you need to synchronise the
@@ -244,6 +252,8 @@ process_exit(void)
     pagedir_activate(NULL);
     pagedir_destroy(pd);
   }
+
+
 }
 
 /* 
