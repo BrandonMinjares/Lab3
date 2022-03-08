@@ -74,8 +74,15 @@ push_command(const char *cmdline UNUSED, void **esp)
 
   char *token;
   int len, argc = 0;
-
+  void* tokens[10];
   token = strtok_r(cmdline_copy, " ", &cmdline_copy);
+
+  //while(token != NULL) {
+    //token = strtok_r(cmdline_copy, " ", &cmdline_copy);
+    //printf("%s\n", token);
+    //token[len];
+    //len++;
+  //}
   
   int i = 0;
   argc = 1;
@@ -142,14 +149,29 @@ start_process(void *cmdline)
   pif.cs = SEL_UCSEG;
   pif.eflags = FLAG_IF | FLAG_MBS;
 
-  bool loaded = elf_load(cmdline, &pif.eip, &pif.esp);
+
+  char *file_name = (char*) cmdline;
+  const char *cmdline_token = palloc_get_page(0);
+
+  char *token, save_ptr;
+  int count = 0;
+  
+  //token = strtok_r(file_name, " ", &save_ptr);
+
+  //while(token != NULL) {
+  //  token = strtok_r(file_name, " ", &save_ptr);
+  //}
+
+
+
+  bool loaded = elf_load(file_name, &pif.eip, &pif.esp);
   if (loaded)
     push_command(cmdline, &pif.esp);
  
   palloc_free_page(cmdline);
 
-  if (!loaded)
-    thread_exit();
+  //if (!loaded)
+    //thread_exit();
 
   // Start the user process by simulating a return from an
   // interrupt, implemented by intr_exit (in threads/intr-stubs.S).
@@ -172,15 +194,29 @@ process_execute(const char *cmdline)
   // Make a copy of CMDLINE to avoid a race condition between the caller 
   // and elf_load()
   char *cmdline_copy = palloc_get_page(0);
+  char *file_name = palloc_get_page(0);
+
   if (cmdline_copy == NULL)
     return TID_ERROR;
 
+
+
+  //strlcpy(cmdline_copy, cmdline, PGSIZE);
+  strlcpy(file_name, cmdline, PGSIZE);
   strlcpy(cmdline_copy, cmdline, PGSIZE);
 
-  // Create a Kernel Thread for the new process
-  tid_t tid = thread_create(cmdline, PRI_DEFAULT, start_process, cmdline_copy);
 
-  timer_sleep(10);
+  char *token;
+  file_name = strtok_r(file_name, " ", &token);
+  printf("Name%s\n", file_name);
+  // Create a Kernel Thread for the new process
+  tid_t tid = thread_create(file_name, PRI_DEFAULT, start_process, cmdline_copy);
+
+
+  //palloc_free_page(cmdline_copy);
+  //palloc_free_page(file_name);
+
+  //timer_sleep(10);
 
   // CSE130 Lab 3 : The "parent" thread immediately returns after creating
   // the child. To get ANY of the tests passing, you need to synchronise the
